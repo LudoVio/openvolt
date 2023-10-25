@@ -35,7 +35,7 @@ async function solution() {
 
   for (let i = 0; i < intensityResponse.data.length; i++) {
     const intensity = intensityResponse.data[i].intensity.actual;
-    const kwh = openvoltResponse.data[i].consumption;
+    const kwh = parseInt(openvoltResponse.data[i].consumption);
 
     // Intensity is in g of Co2 per kwh. We want the unit to be kg
     co2Emitted += (intensity * kwh) / 1000;
@@ -52,7 +52,7 @@ async function solution() {
 
   for (let i = 0; i < generationResponse.data.length; i++) {
     const generation = generationResponse.data[i].generationmix;
-    const kwh = openvoltResponse.data[i].consumption;
+    const kwh = parseInt(openvoltResponse.data[i].consumption);
 
     for (let j = 0; j < generation.length; j++) {
       const { fuel, perc } = generation[j];
